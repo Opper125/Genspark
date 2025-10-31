@@ -1,259 +1,1139 @@
-
 <!DOCTYPE html>
 <html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Website Builder - Unlimited & Free</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>🚀 Advanced Crash Predictor V2</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --success: #00ff88;
+            --warning: #ffd700;
+            --text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--success);
+            animation: float 25s infinite;
+            border-radius: 50%;
+        }
+
+        .bg-animation span:nth-child(1) { left: 25%; animation-delay: 0s; }
+        .bg-animation span:nth-child(2) { left: 10%; animation-delay: 2s; animation-duration: 20s; }
+        .bg-animation span:nth-child(3) { left: 70%; animation-delay: 4s; }
+        .bg-animation span:nth-child(4) { left: 40%; animation-delay: 6s; animation-duration: 30s; }
+        .bg-animation span:nth-child(5) { left: 65%; animation-delay: 8s; }
+        .bg-animation span:nth-child(6) { left: 75%; animation-delay: 10s; animation-duration: 25s; }
+        .bg-animation span:nth-child(7) { left: 35%; animation-delay: 12s; }
+        .bg-animation span:nth-child(8) { left: 50%; animation-delay: 14s; animation-duration: 35s; }
+
+        @keyframes float {
+            0% {
+                bottom: -150px;
+                transform: translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                bottom: 100%;
+                transform: translateX(100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--success) 0%, var(--warning) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { filter: drop-shadow(0 0 10px var(--success)); }
+            50% { filter: drop-shadow(0 0 30px var(--success)); }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--success);
+        }
+
+        .online-pulse {
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+                transform: scale(1.1);
+            }
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .card-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--warning);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: var(--text);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--success);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--success) 0%, #00cc6a 100%);
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* Result Box */
+        .result-box {
+            margin-top: 25px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(0, 255, 136, 0.1),
+                transparent 30%
+            );
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .result-value {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--success) 0%, var(--warning) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: result-glow 2s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+        }
+
+        @keyframes result-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.6)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 255, 136, 0.9)); }
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--highlight), var(--warning), var(--success));
+            border-radius: 10px;
+            transition: width 1s ease;
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Algorithm Selector */
+        .algo-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .algo-btn {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .algo-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .algo-btn.active {
+            background: var(--success);
+            color: #000;
+            border-color: var(--success);
+            font-weight: 700;
+        }
+
+        /* History Section */
+        .history-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .history-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--warning);
+        }
+
+        .clear-btn {
+            padding: 10px 20px;
+            background: var(--highlight);
+            border: none;
+            border-radius: 10px;
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #ff4757;
+            transform: scale(1.05);
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .history-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .history-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .history-grid::-webkit-scrollbar-thumb {
+            background: var(--success);
+            border-radius: 10px;
+        }
+
+        .history-item {
+            padding: 18px 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            animation: slideIn 0.4s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .history-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .history-item:hover::before {
+            left: 100%;
+        }
+
+        .history-item.low {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .history-item.medium {
+            background: linear-gradient(135deg, #ffd93d 0%, #f9ca24 100%);
+            color: #000;
+            box-shadow: 0 5px 15px rgba(255, 217, 61, 0.3);
+        }
+
+        .history-item.high {
+            background: linear-gradient(135deg, #6bcf7f 0%, var(--success) 100%);
+            color: #000;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .history-item .timestamp {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top: 5px solid var(--success);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Advanced Stats */
+        .advanced-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .mini-stat {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .mini-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .mini-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--warning);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .result-value {
+                font-size: 3rem;
+            }
+
+            .algo-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .history-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--text);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--success);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.5s ease-out;
+            z-index: 1000;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-robot"></i>
-                <span>AI Builder Pro</span>
-            </div>
-            <nav class="nav">
-                <button class="nav-btn" data-page="chat">
-                    <i class="fas fa-comments"></i> Chat
-                </button>
-                <button class="nav-btn" data-page="history">
-                    <i class="fas fa-history"></i> History
-                </button>
-                <button class="nav-btn" data-page="settings">
-                    <i class="fas fa-cog"></i> Settings
-                </button>
-            </nav>
-            <div class="api-status">
-                <span class="status-indicator" id="apiStatus"></span>
-                <span id="apiStatusText">Checking...</span>
-            </div>
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">🚀 CRASH PREDICTOR</div>
+            <div class="subtitle">Advanced Algorithm | Real-time Analysis | Personal Use Only</div>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Chat Page -->
-        <div class="page active" id="chatPage">
-            <div class="chat-container">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="welcome-message">
-                        <i class="fas fa-magic"></i>
-                        <h2>Welcome to AI Website Builder</h2>
-                        <p>အခုမှ စတင်အသုံးပြုမယ်ဆိုရင် အောက်က "API Setup" ကို နှိပ်ပြီး သင့် API Keys တွေ ထည့်ပါ</p>
-                        <div class="quick-prompts">
-                            <button class="quick-prompt-btn" data-prompt="Create a modern portfolio website with HTML, CSS, and JavaScript. Include home, about, skills, projects, and contact sections with smooth animations.">
-                                <i class="fas fa-briefcase"></i> Portfolio Website
-                            </button>
-                            <button class="quick-prompt-btn" data-prompt="Create a responsive e-commerce product page with shopping cart functionality using HTML, CSS, and JavaScript. Include product gallery, add to cart, and checkout features.">
-                                <i class="fas fa-shopping-cart"></i> E-commerce Page
-                            </button>
-                            <button class="quick-prompt-btn" data-prompt="Create a beautiful landing page for a startup with hero section, features, pricing, testimonials, and contact form using HTML, CSS, and JavaScript.">
-                                <i class="fas fa-rocket"></i> Landing Page
-                            </button>
-                            <button class="quick-prompt-btn" data-prompt="Create an interactive dashboard with charts, tables, and real-time data visualization using HTML, CSS, and JavaScript. Include sidebar navigation and responsive design.">
-                                <i class="fas fa-chart-line"></i> Dashboard
-                            </button>
-                        </div>
-                    </div>
+        <div class="status-bar">
+            <div class="stat-item">
+                <div class="stat-label">📊 စုစုပေါင်း Predictions</div>
+                <div class="stat-value" id="totalPredictions">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">🎯 ယနေ့ Predictions</div>
+                <div class="stat-value" id="todayPredictions">0</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">
+                    <span class="online-pulse"></span>
+                    Online Users
                 </div>
-
-                <div class="chat-input-container">
-                    <div class="model-selector">
-                        <select id="modelSelect">
-                            <optgroup label="Google Gemini (Free)">
-                                <option value="gemini-2.5-flash">Gemini 1.5 Flash (Fast)</option>
-                                <option value="gemini-2.5-pro">Gemini 1.5 Pro (Smart)</option>
-                            </optgroup>
-                            <optgroup label="Groq (Super Fast)">
-                                <option value="groq-llama-3.1-70b">Llama 3.1 70B</option>
-                                <option value="groq-llama-3.1-8b">Llama 3.1 8B</option>
-                                <option value="groq-mixtral-8x7b">Mixtral 8x7B</option>
-                            </optgroup>
-                            <optgroup label="OpenAI (Premium)">
-                                <option value="openai-gpt-4o">GPT-4o</option>
-                                <option value="openai-gpt-4o-mini">GPT-4o Mini</option>
-                                <option value="openai-gpt-3.5-turbo">GPT-3.5 Turbo</option>
-                            </optgroup>
-                            <optgroup label="Anthropic (Claude)">
-                                <option value="claude-3.5-sonnet">Claude 3.5 Sonnet</option>
-                                <option value="claude-3-haiku">Claude 3 Haiku</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="input-wrapper">
-                        <textarea 
-                            id="chatInput" 
-                            placeholder="Website တစ်ခု ဖန်တီးခိုင်းပါ... (ဥပမာ: Create a modern portfolio website with animations)"
-                            rows="1"
-                        ></textarea>
-                        <button id="sendBtn" class="send-btn">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                    <div class="input-actions">
-                        <button id="clearChatBtn" class="action-btn">
-                            <i class="fas fa-trash"></i> Clear Chat
-                        </button>
-                        <button id="exportChatBtn" class="action-btn">
-                            <i class="fas fa-download"></i> Export
-                        </button>
-                    </div>
-                </div>
+                <div class="stat-value" id="onlineUsers">1</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">📈 ပျမ်းမျှ Accuracy</div>
+                <div class="stat-value" id="avgAccuracy">--</div>
             </div>
         </div>
 
-        <!-- History Page -->
-        <div class="page" id="historyPage">
-            <div class="history-container">
-                <div class="history-header">
-                    <h2><i class="fas fa-history"></i> Chat History</h2>
-                    <button id="clearHistoryBtn" class="btn-danger">
-                        <i class="fas fa-trash"></i> Clear All
-                    </button>
+        <div class="main-grid">
+            <!-- X Number Method -->
+            <div class="card">
+                <div class="card-header">
+                    📈 X Value Method
                 </div>
-                <div id="historyList" class="history-list">
-                    <!-- History items will be inserted here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings Page -->
-        <div class="page" id="settingsPage">
-            <div class="settings-container">
-                <h2><i class="fas fa-cog"></i> API Settings</h2>
                 
-                <div class="api-section">
-                    <h3><i class="fab fa-google"></i> Google Gemini API (Free)</h3>
-                    <p class="api-description">Get free API key: <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a></p>
-                    <input type="password" id="geminiApiKey" placeholder="Enter Gemini API Key" class="api-input">
-                    <button class="test-btn" data-api="gemini"><i class="fas fa-check"></i> Test Connection</button>
+                <div class="input-group">
+                    <label class="input-label">Algorithm ရွေးချယ်ပါ:</label>
+                    <div class="algo-selector">
+                        <button class="algo-btn active" data-algo="fibonacci" onclick="selectAlgo('fibonacci', this)">
+                            Fibonacci
+                        </button>
+                        <button class="algo-btn" data-algo="pattern" onclick="selectAlgo('pattern', this)">
+                            Pattern
+                        </button>
+                        <button class="algo-btn" data-algo="neural" onclick="selectAlgo('neural', this)">
+                            Neural
+                        </button>
+                    </div>
                 </div>
 
-                <div class="api-section">
-                    <h3><i class="fas fa-bolt"></i> Groq API (Super Fast & Free)</h3>
-                    <p class="api-description">Get free API key: <a href="https://console.groq.com/keys" target="_blank">Groq Console</a></p>
-                    <input type="password" id="groqApiKey" placeholder="Enter Groq API Key" class="api-input">
-                    <button class="test-btn" data-api="groq"><i class="fas fa-check"></i> Test Connection</button>
+                <div class="input-group">
+                    <label class="input-label">ယခင် Game ရဲ့ X Value:</label>
+                    <input type="number" 
+                           class="input-field" 
+                           id="prevX" 
+                           placeholder="ဥပမာ: 2.45x" 
+                           step="0.01" 
+                           min="1">
                 </div>
 
-                <div class="api-section">
-                    <h3><i class="fas fa-brain"></i> OpenAI API (Premium)</h3>
-                    <p class="api-description">Get API key: <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a></p>
-                    <input type="password" id="openaiApiKey" placeholder="Enter OpenAI API Key" class="api-input">
-                    <button class="test-btn" data-api="openai"><i class="fas fa-check"></i> Test Connection</button>
+                <button class="btn btn-primary" onclick="predictByX()">
+                    🔮 PREDICT NOW
+                </button>
+
+                <div class="result-box" id="resultX">
+                    <div class="result-content">
+                        <div style="opacity: 0.5; font-size: 1rem;">စောင့်ဆိုင်းနေပါ...</div>
+                    </div>
                 </div>
 
-                <div class="api-section">
-                    <h3><i class="fas fa-robot"></i> Anthropic Claude API</h3>
-                    <p class="api-description">Get API key: <a href="https://console.anthropic.com/" target="_blank">Anthropic Console</a></p>
-                    <input type="password" id="anthropicApiKey" placeholder="Enter Anthropic API Key" class="api-input">
-                    <button class="test-btn" data-api="anthropic"><i class="fas fa-check"></i> Test Connection</button>
+                <div class="advanced-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-label">Confidence</div>
+                        <div class="mini-stat-value" id="confidenceX">--</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-label">Risk Level</div>
+                        <div class="mini-stat-value" id="riskX">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game ID Method -->
+            <div class="card">
+                <div class="card-header">
+                    🎲 Game ID Method
                 </div>
 
-                <div class="settings-actions">
-                    <button id="saveSettingsBtn" class="btn-primary">
-                        <i class="fas fa-save"></i> Save All Settings
-                    </button>
-                    <button id="resetSettingsBtn" class="btn-danger">
-                        <i class="fas fa-undo"></i> Reset to Default
-                    </button>
+                <div class="input-group">
+                    <label class="input-label">Pattern Depth:</label>
+                    <div class="algo-selector">
+                        <button class="algo-btn active" data-depth="5" onclick="selectDepth(5, this)">
+                            5 Games
+                        </button>
+                        <button class="algo-btn" data-depth="10" onclick="selectDepth(10, this)">
+                            10 Games
+                        </button>
+                        <button class="algo-btn" data-depth="20" onclick="selectDepth(20, this)">
+                            20 Games
+                        </button>
+                    </div>
                 </div>
 
-                <div class="settings-info">
-                    <h3><i class="fas fa-info-circle"></i> အသုံးပြုပုံညွှန်ကြားချက်များ</h3>
-                    <ul>
-                        <li>အနည်းဆုံး API key တစ်ခု ထည့်သွင်းပေးရပါမယ်</li>
-                        <li>Google Gemini နှင့် Groq တို့က လုံးဝ အခမဲ့ဖြစ်ပြီး unlimited အသုံးပြုနိုင်ပါတယ်</li>
-                        <li>OpenAI နှင့် Anthropic တို့က premium services ဖြစ်ပါတယ်</li>
-                        <li>API keys များကို browser ရဲ့ localStorage မှာသာ သိမ်းဆည်းပါတယ် (လုံခြုံပါတယ်)</li>
-                        <li>ဘယ် server မှာမှ သင့် API keys တွေ မသိမ်းပါဘူး</li>
-                    </ul>
+                <div class="input-group">
+                    <label class="input-label">လက်ရှိ Game ID:</label>
+                    <input type="text" 
+                           class="input-field" 
+                           id="gameId" 
+                           placeholder="ဥပမာ: 8652586">
+                </div>
+
+                <button class="btn btn-primary" onclick="predictByGameId()">
+                    🔮 PREDICT NOW
+                </button>
+
+                <div class="result-box" id="resultGameId">
+                    <div class="result-content">
+                        <div style="opacity: 0.5; font-size: 1rem;">စောင့်ဆိုင်းနေပါ...</div>
+                    </div>
+                </div>
+
+                <div class="advanced-stats">
+                    <div class="mini-stat">
+                        <div class="mini-stat-label">Confidence</div>
+                        <div class="mini-stat-value" id="confidenceGameId">--</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-stat-label">Pattern Match</div>
+                        <div class="mini-stat-value" id="patternMatch">--</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Code Preview Modal -->
-    <div id="codeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-code"></i> Code Preview</h3>
-                <button class="close-modal"><i class="fas fa-times"></i></button>
+        <!-- History -->
+        <div class="history-section">
+            <div class="history-header">
+                <div class="history-title">📜 Prediction History</div>
+                <button class="clear-btn" onclick="clearHistory()">🗑️ Clear All</button>
             </div>
-            <div class="modal-body">
-                <div class="code-tabs">
-                    <button class="code-tab active" data-tab="preview">
-                        <i class="fas fa-eye"></i> Preview
-                    </button>
-                    <button class="code-tab" data-tab="html">
-                        <i class="fab fa-html5"></i> HTML
-                    </button>
-                    <button class="code-tab" data-tab="css">
-                        <i class="fab fa-css3-alt"></i> CSS
-                    </button>
-                    <button class="code-tab" data-tab="js">
-                        <i class="fab fa-js"></i> JavaScript
-                    </button>
-                </div>
-                <div class="code-content">
-                    <div class="code-panel active" id="previewPanel">
-                        <iframe id="previewFrame"></iframe>
-                    </div>
-                    <div class="code-panel" id="htmlPanel">
-                        <div class="code-header">
-                            <span>index.html</span>
-                            <button class="copy-btn" data-target="htmlCode">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <pre><code id="htmlCode"></code></pre>
-                    </div>
-                    <div class="code-panel" id="cssPanel">
-                        <div class="code-header">
-                            <span>style.css</span>
-                            <button class="copy-btn" data-target="cssCode">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <pre><code id="cssCode"></code></pre>
-                    </div>
-                    <div class="code-panel" id="jsPanel">
-                        <div class="code-header">
-                            <span>script.js</span>
-                            <button class="copy-btn" data-target="jsCode">
-                                <i class="fas fa-copy"></i> Copy
-                            </button>
-                        </div>
-                        <pre><code id="jsCode"></code></pre>
-                    </div>
-                </div>
-                <div class="modal-actions">
-                    <button id="downloadCodeBtn" class="btn-primary">
-                        <i class="fas fa-download"></i> Download All Files
-                    </button>
-                    <button id="openFullPreviewBtn" class="btn-secondary">
-                        <i class="fas fa-external-link-alt"></i> Open in New Tab
-                    </button>
+            <div class="history-grid" id="historyGrid">
+                <div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 40px;">
+                    မှတ်တမ်းမရှိသေးပါ
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loading-spinner">
-            <i class="fas fa-robot fa-spin"></i>
-            <p>AI က အလုပ်လုပ်နေပါတယ်...</p>
-        </div>
-    </div>
+    <script>
+        // Configuration
+        const CONFIG = {
+            STORAGE_PREFIX: 'crash_pred_',
+            MAX_HISTORY: 50,
+            ONLINE_BASE: 20,
+            ONLINE_VARIANCE: 15
+        };
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+        // State
+        let state = {
+            selectedAlgo: 'fibonacci',
+            patternDepth: 5,
+            history: [],
+            stats: {
+                total: 0,
+                today: 0,
+                lastDate: new Date().toDateString()
+            }
+        };
 
-    <script src="index.js"></script>
+        // Advanced Prediction Algorithms
+        const algorithms = {
+            fibonacci: (seed) => {
+                const fib = [1, 1.5, 2, 3, 5];
+                const idx = Math.abs(Math.floor(seed * 10000)) % fib.length;
+                const base = fib[idx];
+                const variance = (Math.sin(seed * 123.456) + 1) * 0.5;
+                return base + variance * 2;
+            },
+
+            pattern: (seed) => {
+                const patterns = [
+                    [1.2, 1.5, 2.0, 1.8, 3.5],
+                    [1.1, 2.5, 1.3, 4.0, 1.7],
+                    [2.0, 1.5, 3.0, 1.2, 5.0]
+                ];
+                const patternIdx = Math.abs(Math.floor(seed * 1000)) % patterns.length;
+                const pattern = patterns[patternIdx];
+                const itemIdx = Math.abs(Math.floor(seed * 100)) % pattern.length;
+                return pattern[itemIdx] + (Math.random() * 0.5);
+            },
+
+            neural: (seed) => {
+                // Simulate neural network prediction
+                const weights = [0.3, 0.5, 0.2];
+                const inputs = [
+                    Math.sin(seed * 12.34),
+                    Math.cos(seed * 45.67),
+                    Math.tan(seed * 0.123) % 1
+                ];
+                
+                let sum = 0;
+                for (let i = 0; i < weights.length; i++) {
+                    sum += weights[i] * inputs[i];
+                }
+                
+                const activation = 1 / (1 + Math.exp(-sum));
+                return 1 + activation * 8;
+            }
+        };
+
+        // Generate prediction with selected algorithm
+        function generatePrediction(seed, algo = state.selectedAlgo) {
+            const algoFunc = algorithms[algo];
+            const rawValue = algoFunc(seed);
+            
+            // Apply constraints
+            const value = Math.max(1.01, Math.min(10.00, rawValue));
+            
+            // Calculate confidence (simulated)
+            const confidence = 65 + Math.random() * 25;
+            
+            // Calculate risk level
+            let risk = 'LOW';
+            if (value > 3 && value < 6) risk = 'MED';
+            if (value >= 6) risk = 'HIGH';
+            
+            return {
+                value: parseFloat(value.toFixed(2)),
+                confidence: Math.floor(confidence),
+                risk: risk,
+                algo: algo
+            };
+        }
+
+        // Predict by X Value
+        function predictByX() {
+            const input = document.getElementById('prevX').value;
+            const prevX = parseFloat(input);
+
+            if (!prevX || prevX < 1 || prevX > 10) {
+                showToast('ကျေးဇူးပြု၍ 1.00 နှင့် 10.00 ကြား X value ထည့်ပါ', 'error');
+                return;
+            }
+
+            showLoading('resultX');
+
+            setTimeout(() => {
+                const seed = prevX * Date.now() * Math.random();
+                const prediction = generatePrediction(seed);
+                
+                showResult('resultX', prediction);
+                updateMiniStats('X', prediction);
+                addToHistory(prediction, 'X Value');
+                updateStats();
+                
+                showToast(`Prediction: ${prediction.value}x (${prediction.confidence}% confidence)`, 'success');
+            }, 2000);
+        }
+
+        // Predict by Game ID
+        function predictByGameId() {
+            const gameId = document.getElementById('gameId').value;
+
+            if (!gameId || isNaN(gameId)) {
+                showToast('ကျေးဇူးပြု၍ မှန်ကန်သော Game ID ထည့်ပါ', 'error');
+                return;
+            }
+
+            showLoading('resultGameId');
+
+            setTimeout(() => {
+                const seed = parseInt(gameId) * 0.00001 + (Date.now() * 0.0001);
+                const prediction = generatePrediction(seed);
+                
+                // Calculate pattern match (simulated)
+                const patternMatch = 70 + Math.floor(Math.random() * 25);
+                prediction.patternMatch = patternMatch;
+                
+                showResult('resultGameId', prediction);
+                updateMiniStats('GameId', prediction);
+                addToHistory(prediction, 'Game ID');
+                updateStats();
+                
+                showToast(`Prediction: ${prediction.value}x (${patternMatch}% pattern match)`, 'success');
+            }, 2000);
+        }
+
+        // Show loading
+        function showLoading(elementId) {
+            document.getElementById(elementId).innerHTML = `
+                <div class="result-content">
+                    <div class="loading-spinner"></div>
+                    <div style="margin-top: 20px; opacity: 0.8;">Analyzing patterns...</div>
+                </div>
+            `;
+        }
+
+        // Show result
+        function showResult(elementId, prediction) {
+            const riskColors = {
+                'LOW': '#00ff88',
+                'MED': '#ffd700',
+                'HIGH': '#ff6b6b'
+            };
+
+            document.getElementById(elementId).innerHTML = `
+                <div class="result-content">
+                    <div style="opacity: 0.7; font-size: 0.95rem; margin-bottom: 10px;">
+                        ${prediction.algo.toUpperCase()} PREDICTION
+                    </div>
+                    <div class="result-value">${prediction.value}x</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" style="width: ${prediction.confidence}%; background: linear-gradient(90deg, ${riskColors[prediction.risk]}, #ffd700);"></div>
+                    </div>
+                    <div style="margin-top: 15px; opacity: 0.6; font-size: 0.85rem;">
+                        Risk: ${prediction.risk} | Confidence: ${prediction.confidence}%
+                    </div>
+                </div>
+            `;
+        }
+
+        // Update mini stats
+        function updateMiniStats(method, prediction) {
+            if (method === 'X') {
+                document.getElementById('confidenceX').textContent = prediction.confidence + '%';
+                document.getElementById('riskX').textContent = prediction.risk;
+            } else {
+                document.getElementById('confidenceGameId').textContent = prediction.confidence + '%';
+                document.getElementById('patternMatch').textContent = (prediction.patternMatch || 0) + '%';
+            }
+        }
+
+        // Add to history
+        function addToHistory(prediction, method) {
+            const item = {
+                value: prediction.value,
+                confidence: prediction.confidence,
+                risk: prediction.risk,
+                method: method,
+                algo: prediction.algo,
+                timestamp: new Date().toISOString()
+            };
+
+            state.history.unshift(item);
+
+            if (state.history.length > CONFIG.MAX_HISTORY) {
+                state.history = state.history.slice(0, CONFIG.MAX_HISTORY);
+            }
+
+            saveToStorage('history', state.history);
+            renderHistory();
+        }
+
+        // Render history
+        function renderHistory() {
+            const grid = document.getElementById('historyGrid');
+
+            if (state.history.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; opacity: 0.5; padding: 40px;">
+                        မှတ်တမ်းမရှိသေးပါ
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = state.history.map(item => {
+                const val = parseFloat(item.value);
+                let className = 'low';
+                if (val >= 2 && val < 5) className = 'medium';
+                if (val >= 5) className = 'high';
+
+                const time = new Date(item.timestamp);
+                const timeStr = time.toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+
+                return `
+                    <div class="history-item ${className}" title="${item.method} | ${item.algo}">
+                        <div>${item.value}x</div>
+                        <div class="timestamp">${timeStr}</div>
+                        <div class="timestamp">${item.confidence}%</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Clear history
+        function clearHistory() {
+            if (confirm('History အားလုံး ဖျက်မှာ သေချာပါသလား?')) {
+                state.history = [];
+                saveToStorage('history', state.history);
+                renderHistory();
+                showToast('History ကို ရှင်းလင်းပြီးပါပြီ', 'success');
+            }
+        }
+
+        // Update stats
+        function updateStats() {
+            const today = new Date().toDateString();
+            
+            if (state.stats.lastDate !== today) {
+                state.stats.today = 0;
+                state.stats.lastDate = today;
+            }
+
+            state.stats.total++;
+            state.stats.today++;
+
+            saveToStorage('stats', state.stats);
+            renderStats();
+        }
+
+        // Render stats
+        function renderStats() {
+            document.getElementById('totalPredictions').textContent = state.stats.total;
+            document.getElementById('todayPredictions').textContent = state.stats.today;
+
+            // Calculate average accuracy (simulated)
+            if (state.history.length > 0) {
+                const avgConf = state.history.reduce((sum, item) => sum + item.confidence, 0) / state.history.length;
+                document.getElementById('avgAccuracy').textContent = Math.floor(avgConf) + '%';
+            }
+        }
+
+        // Update online users (simulated)
+        function updateOnlineUsers() {
+            const count = CONFIG.ONLINE_BASE + Math.floor(Math.random() * CONFIG.ONLINE_VARIANCE);
+            document.getElementById('onlineUsers').textContent = count;
+        }
+
+        // Select algorithm
+        function selectAlgo(algo, btn) {
+            state.selectedAlgo = algo;
+            document.querySelectorAll('.algo-selector .algo-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+            showToast(`Algorithm: ${algo.toUpperCase()} ကို ရွေးချယ်ပြီးပါပြီ`, 'info');
+        }
+
+        // Select depth
+        function selectDepth(depth, btn) {
+            state.patternDepth = depth;
+            document.querySelectorAll('[data-depth]').forEach(b => {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+            showToast(`Pattern depth: ${depth} games`, 'info');
+        }
+
+        // Toast notification
+        function showToast(message, type = 'info') {
+            const colors = {
+                success: '#00ff88',
+                error: '#ff6b6b',
+                info: '#ffd700'
+            };
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.borderLeftColor = colors[type] || colors.info;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideInRight 0.5s ease-out reverse';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        // Storage helpers
+        function saveToStorage(key, data) {
+            localStorage.setItem(CONFIG.STORAGE_PREFIX + key, JSON.stringify(data));
+        }
+
+        function loadFromStorage(key, defaultValue = null) {
+            const data = localStorage.getItem(CONFIG.STORAGE_PREFIX + key);
+            return data ? JSON.parse(data) : defaultValue;
+        }
+
+        // Initialize
+        function init() {
+            // Load saved data
+            state.history = loadFromStorage('history', []);
+            state.stats = loadFromStorage('stats', {
+                total: 0,
+                today: 0,
+                lastDate: new Date().toDateString()
+            });
+
+            // Render
+            renderHistory();
+            renderStats();
+            updateOnlineUsers();
+
+            // Update online users every 5 seconds
+            setInterval(updateOnlineUsers, 5000);
+
+            // Enter key support
+            document.getElementById('prevX').addEventListener('keypress', e => {
+                if (e.key === 'Enter') predictByX();
+            });
+
+            document.getElementById('gameId').addEventListener('keypress', e => {
+                if (e.key === 'Enter') predictByGameId();
+            });
+
+            console.log('🚀 Crash Predictor V2 initialized');
+        }
+
+        // Start
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
